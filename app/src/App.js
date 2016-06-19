@@ -6,6 +6,7 @@ import {
   View
 } from 'react-native';
 import Title from './components/Title';
+import Logo from './components/Logo';
 
 var Beacons = require('react-native-ibeacon');
 
@@ -36,8 +37,9 @@ class App extends Component {
 
     return (
       <View style={styles.container}>
+        <Logo/>
         <Title/>
-        <Text>
+        <Text style={styles.welcome}>
           {this.props.beaconData}
         </Text>
       </View>
@@ -51,8 +53,23 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginTop: 70,
     alignItems: 'center',
+<<<<<<< ef5ebf52b05a537a8a510cf86c0b57740535848b
     backgroundColor: '#F5FCFF',
   }
+=======
+    backgroundColor: 'white',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+>>>>>>> :moneybag: Add logo
 });
 
 App.defaultProps = {
