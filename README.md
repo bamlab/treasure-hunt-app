@@ -102,3 +102,31 @@ Date: Sun, 19 Jun 2016 14:48:47 GMT
 
 {"uuid":"86ea34e5-40dd-48b7-a319-e755fd5468a4","username":"jsmith","registered_at":"2016-06-19 16:48:47"}
 ```
+
+### Create New Game
+
+Request payload:
+
+```http
+POST /games HTTP/1.1
+Host: localhost:8000
+Accept: application/json
+Content-Type: application/json
+
+{
+    "label": "Game #1"
+}
+```
+
+Response payload:
+
+```http
+HTTP/1.1 201 Created
+Host: localhost:8000
+Connection: close
+Content-Type: application/json
+Cache-Control: no-cache
+Date: Sun, 19 Jun 2016 15:23:05 GMT
+
+{"uuid":"c2a25832-008f-4bfa-9f9c-af9a072a29d5","label":"Game 1","created_at":"2016-06-19 17:23:05"}
+```

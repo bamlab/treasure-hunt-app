@@ -52,12 +52,17 @@ class Game implements NormalizableInterface
 
     public function toArray()
     {
-        return [
+        $data = [
             'uuid' => $this->uuid->toString(),
             'label' => $this->label,
             'created_at' => $this->createdAt->format('Y-m-d H:i:s'),
-            'finished_at' => $this->createdAt->format('Y-m-d H:i:s'),
         ];
+
+        if ($this->finishedAt instanceof \DateTime) {
+            $data['finished_at'] = $this->finishedAt->format('Y-m-d H:i:s');
+        }
+
+        return $data;
     }
 
     public function normalize(NormalizerInterface $normalizer, $format = null, array $context = [])

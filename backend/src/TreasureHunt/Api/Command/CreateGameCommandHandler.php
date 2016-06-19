@@ -17,7 +17,7 @@ class CreateGameCommandHandler extends AbstractCommandHandler
         $game = Game::create($command->label);
 
         $this->save(function (Connection $database) use ($game) {
-            $database->insert('th_user', $game->toArray());
+            $database->insert('th_game', $game->toArray());
         });
 
         return $this->createResponse($game, Response::HTTP_CREATED);

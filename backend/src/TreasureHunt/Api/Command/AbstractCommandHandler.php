@@ -46,7 +46,7 @@ abstract class AbstractCommandHandler
 
     protected function createResponse($data, $statusCode = Response::HTTP_OK, array $headers = [])
     {
-        return new Response($this->serialize($data, 'json'), $statusCode, array_merge(
+        return new Response($this->serialize($data), $statusCode, array_merge(
             ['Content-Type' => 'application/json'],
             $headers
         ));
