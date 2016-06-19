@@ -48,7 +48,7 @@ class ClosestBeacon extends Component {
       (data) => {
         var beacon;
 
-        console.log(data.beacon);
+        console.log(data.beacons);
 
         if (data && data.beacons.length) {
           if (!this.state.beacon) {
@@ -64,7 +64,7 @@ class ClosestBeacon extends Component {
           for (var i = 0, len = data.beacons.length; i < len; i++) {
             beacon = data.beacons[i];
 
-            if (beacon.UUID + beacon.Major + beacon.Minor == this.state.beacon.UUID + this.state.beacon.Major + this.state.beacon.Minor) {
+            if (beacon.uuid + beacon.major + beacon.minor == this.state.beacon.uuid + this.state.beacon.major + this.state.beacon.minor) {
               this.setState({
                 beacon: beacon
               });
