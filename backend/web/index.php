@@ -4,13 +4,17 @@ require __DIR__.'/../vendor/autoload.php';
 
 $conf = require __DIR__.'/../conf/settings.php';
 
-use TreasureHunt\TreasureHunt;
 use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\SerializerServiceProvider;
+use Silex\Provider\ValidatorServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
+use TreasureHunt\TreasureHunt;
 
 Request::enableHttpMethodParameterOverride();
 
 $app = new TreasureHunt();
+$app->register(new SerializerServiceProvider());
+$app->register(new ValidatorServiceProvider());
 $app->register(new DoctrineServiceProvider(), [
     'db.options' => $conf['database'],
 ]);
