@@ -66,6 +66,11 @@ class ClosestBeacon extends Component {
           for (var i = 0, len = data.beacons.length; i < len; i++) {
             beacon = data.beacons[i];
 
+            if (beacon.accuracy < 0) {
+              // error reading accuracy so skip the beacon
+              continue;
+            }
+
             if (beacon.uuid + beacon.major + beacon.minor == this.state.beacon.uuid + this.state.beacon.major + this.state.beacon.minor) {
               this.setState({
                 beacon: beacon
