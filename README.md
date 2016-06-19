@@ -86,30 +86,19 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "username": "hhamon"
+    "username": "jsmith"
 }
 ```
 
 Response payload:
 
 ```http
-POST /users HTTP/1.1
-Host: localhost:8000
-Accept: application/json
-Content-Type: application/json
-
-{
-    "username": "jsmith"
-}
-```
-
-```http
 HTTP/1.1 201 Created
 Host: localhost:8000
 Connection: close
-Cache-Control: no-cache
 Content-Type: application/json
-Date: Sun, 19 Jun 2016 14:44:13 GMT
+Cache-Control: no-cache
+Date: Sun, 19 Jun 2016 14:48:47 GMT
 
-"{\u0022uuid\u0022:\u00222df18d52-162f-4cec-b7e6-daf352f5108a\u0022,\u0022username\u0022:\u0022jsmith\u0022,\u0022registered_at\u0022:\u00222016-06-19 16:44:13\u0022}"
+{"uuid":"86ea34e5-40dd-48b7-a319-e755fd5468a4","username":"jsmith","registered_at":"2016-06-19 16:48:47"}
 ```

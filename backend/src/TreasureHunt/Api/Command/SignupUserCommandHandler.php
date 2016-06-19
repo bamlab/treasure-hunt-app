@@ -40,6 +40,10 @@ class SignupUserCommandHandler
         $this->database->insert('th_user', $user->toArray());
         $this->database->commit();
 
-        return new JsonResponse($this->serializer->serialize($user, 'json'), Response::HTTP_CREATED);
+        return new Response(
+            $this->serializer->serialize($user, 'json'),
+            Response::HTTP_CREATED,
+            ['Content-Type' => 'application/json']
+        );
     }
 }
