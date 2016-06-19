@@ -6,6 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "gl-react": "^2.2.4",
+    "gl-react-hue-rotate": "^1.1.0",
+    "gl-react-native": "^2.27.0",
     "react": "^15.1.0",
     "react-native": "^0.27.2",
     "react-native-alt-beacon": "^1.0.2",

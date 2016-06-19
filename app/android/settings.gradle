@@ -1,5 +1,7 @@
 rootProject.name = 'app'
 
 include ':app'
+include ':gl-react-native'
+project(':gl-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/gl-react-native/android')
 include ':react-native-alt-beacon'
 project(':react-native-alt-beacon').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-alt-beacon/android')

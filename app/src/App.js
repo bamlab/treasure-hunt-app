@@ -44,7 +44,7 @@ class App extends Component {
           {this.props.beaconData}
         </Text>
         <Tip number={1} message="Dans un jardin à côté du sénat"/>
-        <HotCold/>
+        <HotCold distance={7}/>
       </View>
     );
   }
