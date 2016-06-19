@@ -6,9 +6,10 @@ import {
   View
 } from 'react-native';
 import Title from './components/Title';
-import Logo from './components/Logo';
 
+import Logo from './components/Logo';
 var Beacons = require('react-native-ibeacon');
+import Tip from './components/Tip';
 
 class App extends Component {
   componentWillMount() {
@@ -41,11 +42,13 @@ class App extends Component {
         <Title/>
         <Text style={styles.welcome}>
           {this.props.beaconData}
+        <Tip number={1} message="Dans un jardin à côté du sénat"/>
         </Text>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
