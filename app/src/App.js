@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Title from './components/Title';
 import Logo from './components/Logo';
-import HotCold from './components/HotCold';
+import ClosestBeacon from './components/ClosestBeacon';
 import Tip from './components/Tip';
 import RewardPopup from './components/RewardPopup'
 var Beacons = require('react-native-ibeacon');
@@ -45,7 +45,7 @@ class App extends Component {
           {this.props.beaconData}
         </Text>
         <Tip number={1} message="Dans un jardin à côté du sénat"/>
-        <HotCold/>
+        <ClosestBeacon/>
         <RewardPopup/>
       </View>
     );

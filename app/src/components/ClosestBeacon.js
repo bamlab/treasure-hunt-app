@@ -5,6 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import HotCold from './HotCold';
 
 var _ = require('lodash')
 
@@ -19,20 +20,6 @@ Beacons.requestWhenInUseAuthorization();
 Beacons.startRangingBeaconsInRegion(region);
 Beacons.startUpdatingLocation();
 
-class BeaconView extends Component {
-  render() {
-   return (
-     <View style={styles.row}>
-       <Text style={styles.smallText}>UUID: {this.props.uuid}</Text>
-       <Text style={styles.smallText}>Major: {this.props.major}</Text>
-       <Text style={styles.smallText}>Minor: {this.props.minor}</Text>
-       <Text>RSSI: {this.props.rssi}</Text>
-       <Text>Proximity: {this.props.proximity}</Text>
-       <Text>Distance: {this.props.accuracy.toFixed(2)}m</Text>
-     </View>
-   );
-  }
-}
 
 class ClosestBeacon extends Component {
   constructor(props) {
@@ -97,7 +84,7 @@ class ClosestBeacon extends Component {
 
    return (
      <View style={styles.container}>
-      <BeaconView {...this.state.beacon} style={styles.row} />
+        <HotCold {...this.state.beacon} style={styles.row} />
      </View>
    );
  };
