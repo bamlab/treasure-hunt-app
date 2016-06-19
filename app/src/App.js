@@ -4,14 +4,13 @@ import {
   Text,
   View
 } from 'react-native';
+import Title from './components/Title';
 
 class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Salut bienvenue ;)
-        </Text>
+        <Title/>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
