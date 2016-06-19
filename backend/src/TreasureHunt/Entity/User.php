@@ -25,6 +25,20 @@ class User implements NormalizableInterface
         return new self(Uuid::uuid4(), $username, new \DateTime());
     }
 
+    public static function load(array $data)
+    {
+        return new self(
+            Uuid::fromString($data['uuid']),
+            $data['username'],
+            new \DateTime($data['registered_at'])
+        );
+    }
+
+    public function joinGame(Game $game)
+    {
+        return JoinedGame::create($this, $game);
+    }
+
     public function getUuid()
     {
         return $this->uuid;

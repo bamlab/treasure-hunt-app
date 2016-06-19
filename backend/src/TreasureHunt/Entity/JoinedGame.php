@@ -7,17 +7,19 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class Game implements NormalizableInterface
+class JoinedGame implements NormalizableInterface
 {
     private $uuid;
-    private $label;
-    private $createdAt;
+    private $user;
+    private $game;
+    private $startedAt;
     private $finishedAt;
+    private $score;
 
-    public function __construct(UuidInterface $uuid, $label, $createdAt, $finishedAt = null)
+    public function __construct(UuidInterface $uuid, UuidInterface $user, UuidInterface $game, $startedAt = null, $finishedAt = null, $score = 0)
     {
-        if (!$createdAt instanceof \DateTime) {
-            $createdAt = new \DateTime($createdAt);
+        if (!$startedAt instanceof \DateTime) {
+            $startedAt = new \DateTime($startedAt);
         }
 
         if (null !== $finishedAt && !$finishedAt instanceof \DateTime) {
@@ -25,60 +27,44 @@ class Game implements NormalizableInterface
         }
 
         $this->uuid = $uuid;
-        $this->label = $label;
-        $this->createdAt = $createdAt;
+        $this->user = $user;
+        $this->game = $game;
+        $this->startedAt = $startedAt;
         $this->finishedAt = $finishedAt;
+        $this->score = (int) $score;
     }
 
-    public static function create($label)
+    public static function create(User $user, Game $game)
     {
-        return new self(Uuid::uuid4(), $label, new \DateTime());
+        return new self(Uuid::uuid4(), $user->getUuid(), $game->getUuid(), new \DateTime());
     }
 
     public static function load(array $data)
     {
         return new self(
             Uuid::fromString($data['uuid']),
-            $data['label'],
-            $data['created_at'],
-            $data['finished_at'] 
+            Uuid::fromString($data['user_uuid']),
+            Uuid::fromString($data['game_uuid']),
+            $data['started_at'],
+            $data['finished_at'],
+            $data['score']
         );
-    }
-
-    public function getUuid()
-    {
-        return $this->uuid;
-    }
-
-    public function getLabel()
-    {
-        return $this->label;
-    }
-
-    public function finish($time = null)
-    {
-        if (null === $time) {
-            $time = 'now';
-        }
-
-        if (!$time instanceof \DateTime) {
-            $time = new \DateTime($time);
-        }
-
-        $this->finishedAt = $time;
     }
 
     public function toArray()
     {
         $data = [
             'uuid' => $this->uuid->toString(),
-            'label' => $this->label,
-            'created_at' => $this->createdAt->format('Y-m-d H:i:s'),
+            'user_uuid' => $this->user->toString(),
+            'game_uuid' => $this->game->toString(),
+            'started_at' => $this->startedAt->format('Y-m-d H:i:s'),
         ];
 
         if ($this->finishedAt instanceof \DateTime) {
             $data['finished_at'] = $this->finishedAt->format('Y-m-d H:i:s');
         }
+
+        $data['score'] = $this->score;
 
         return $data;
     }

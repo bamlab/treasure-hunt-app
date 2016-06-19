@@ -130,3 +130,31 @@ Date: Sun, 19 Jun 2016 15:23:05 GMT
 
 {"uuid":"c2a25832-008f-4bfa-9f9c-af9a072a29d5","label":"Game 1","created_at":"2016-06-19 17:23:05"}
 ```
+
+### Join a  Game
+
+Request payload:
+
+```http
+POST /user/86ea34e5-40dd-48b7-a319-e755fd5468a4/games HTTP/1.1
+Host: localhost:8000
+Accept: application/json
+Content-Type: application/json
+
+{
+    "game": "c2a25832-008f-4bfa-9f9c-af9a072a29d5"
+}
+```
+
+Response payload:
+
+```http
+HTTP/1.1 201 Created
+Host: localhost:8000
+Connection: close
+Content-Type: application/json
+Cache-Control: no-cache
+Date: Sun, 19 Jun 2016 16:00:04 GMT
+
+{"uuid":"47f9a9a3-3062-4beb-9243-16693ea8851a","user_uuid":"86ea34e5-40dd-48b7-a319-e755fd5468a4","game_uuid":"c2a25832-008f-4bfa-9f9c-af9a072a29d5","started_at":"2016-06-19 18:00:04","score":0}
+```

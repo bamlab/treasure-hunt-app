@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use TreasureHunt\Api\Command\CreateGameCommand;
 use TreasureHunt\Api\Command\CreateGameCommandHandler;
+use TreasureHunt\Api\Command\JoinGameCommand;
+use TreasureHunt\Api\Command\JoinGameCommandHandler;
 use TreasureHunt\Api\Command\SignupUserCommand;
 use TreasureHunt\Api\Command\SignupUserCommandHandler;
 use TreasureHunt\TreasureHunt;
@@ -31,6 +33,14 @@ $app->register(new DoctrineServiceProvider(), [
 $app->extend('serializer.normalizers', function(array $normalizers) {
     return array_merge($normalizers, [new ObjectNormalizer()]);
 });
+
+$app['app.join_game_handler'] = function (TreasureHunt $app) {
+    return new JoinGameCommandHandler(
+        $app['validator'],
+        $app['db'],
+        $app['serializer']
+    );
+};
 
 $app['app.signup_user_handler'] = function (TreasureHunt $app) {
     return new SignupUserCommandHandler(
@@ -69,8 +79,15 @@ $app->get('/users/ranking', function (Request $request) use ($app) {
 
 });
 
-$app->post('/users/{id}/games', function (Request $request) {
+$app->post('/users/{user}/games', function (Request $request) use ($app) {
+    $command = $app['serializer']->deserialize(
+        $request->getContent(),
+        JoinGameCommand::class,
+        'json'
+    );
+    $command->user = $request->get('user');
 
+    return $app['app.join_game_handler']->handle($command);
 });
 
 $app->put('/users/{user}/games/{game}', function (Request $request) {

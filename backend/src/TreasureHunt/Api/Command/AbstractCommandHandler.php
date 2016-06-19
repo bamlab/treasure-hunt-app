@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 abstract class AbstractCommandHandler
 {
     private $validator;
-    private $database;
+    protected $database;
     private $serializer;
 
     public function __construct(
