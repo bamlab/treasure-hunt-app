@@ -9,6 +9,7 @@ import Title from './components/Title';
 import Logo from './components/Logo';
 import HotCold from './components/HotCold';
 import Tip from './components/Tip';
+import RewardPopup from './components/RewardPopup'
 var Beacons = require('react-native-ibeacon');
 
 class App extends Component {
@@ -45,10 +46,12 @@ class App extends Component {
         </Text>
         <Tip number={1} message="Dans un jardin à côté du sénat"/>
         <HotCold/>
+        <RewardPopup/>
       </View>
     );
   }
 }
+
 
 
 const styles = StyleSheet.create({
