@@ -1,3 +1,2 @@
-/backend/cache/
-!/backend/cache/.gitkeep
+/conf/settings.php
 /backend/vendor/
