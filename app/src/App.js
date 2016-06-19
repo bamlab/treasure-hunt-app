@@ -53,10 +53,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginTop: 70,
     alignItems: 'center',
-<<<<<<< ef5ebf52b05a537a8a510cf86c0b57740535848b
-    backgroundColor: '#F5FCFF',
-  }
-=======
     backgroundColor: 'white',
   },
   welcome: {
@@ -69,7 +65,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
->>>>>>> :moneybag: Add logo
 });
 
 App.defaultProps = {
