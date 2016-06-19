@@ -70,7 +70,7 @@ class ClosestBeacon extends Component {
               this.setState({
                 beacon: beacon
               });
-            } else if (beacon.Distance < this.state.beacon.Distance) {
+            } else if (beacon.accuracy < this.state.beacon.accuracy) {
               this.setState({
                 beacon: beacon
               });
