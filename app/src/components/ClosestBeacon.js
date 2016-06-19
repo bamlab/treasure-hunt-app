@@ -6,6 +6,8 @@ import {
   View,
 } from 'react-native';
 
+var _ = require('lodash')
+
 var Beacons = require('react-native-ibeacon');
 
 var region = {
@@ -51,7 +53,7 @@ class ClosestBeacon extends Component {
         console.log(data.beacons);
 
         if (data && data.beacons.length) {
-          if (!this.state.beacon) {
+          if (_.isEmpty(this.state.beacon)) {
             // initialize to a random beacon
             // @todo : choose the closest one
             this.setState({
@@ -80,10 +82,12 @@ class ClosestBeacon extends Component {
   };
 
  render() {
-   if (!this.state.beacon) {
-     <View style={styles.container}>
-       <Text>Searching...</Text>
-     </View>
+   if (_.isEmpty(this.state.beacon)) {
+     return (
+       <View style={styles.container}>
+         <Text>Searching...</Text>
+       </View>
+     )
    }
 
    return (
