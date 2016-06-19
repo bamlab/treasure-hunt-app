@@ -8,7 +8,7 @@ class Logo extends Component {
     return (
       <Image
         style={style}
-        source={require('./treasure.png')}
+        source={require('../img/treasure.png')}
       />
     );
   }

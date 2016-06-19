@@ -5,10 +5,14 @@ import {
 } from 'react-native';
 
 class Title extends Component {
+  static propTypes = {
+    title: React.PropTypes.string.isRequired
+  };
+
   render() {
     return (
       <Text style={styles.title}>
-        Titre
+        {this.props.title}
       </Text>
     );
   }

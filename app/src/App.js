@@ -6,10 +6,10 @@ import {
   View
 } from 'react-native';
 import Title from './components/Title';
-
 import Logo from './components/Logo';
-var Beacons = require('react-native-ibeacon');
+import HotCold from './components/HotCold';
 import Tip from './components/Tip';
+var Beacons = require('react-native-ibeacon');
 
 class App extends Component {
   componentWillMount() {
@@ -39,11 +39,12 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <Logo/>
-        <Title/>
-        <Text style={styles.welcome}>
+        <Title title="TreasureHunt !"/>
+        <Text>
           {this.props.beaconData}
         </Text>
         <Tip number={1} message="Dans un jardin à côté du sénat"/>
+        <HotCold/>
       </View>
     );
   }
@@ -57,17 +58,7 @@ const styles = StyleSheet.create({
     marginTop: 70,
     alignItems: 'center',
     backgroundColor: 'white',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
 
 App.defaultProps = {
