@@ -9,8 +9,6 @@
         "symfony/twig-bridge": "^3.1"
     },
     "autoload": {
-        "psr-4": {
-            "": "src"
-        }
+        "psr-4": { "": "src/" }
     }
 }
