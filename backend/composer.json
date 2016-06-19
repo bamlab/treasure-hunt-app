@@ -1,5 +1,14 @@
 {
+    "name": "hackbrunch/treasure-hunt",
+    "description": "A treasure hunt application with beacons and mobile app",
+    "license": "MIT",
+    "type": "application",
     "require": {
         "silex/silex": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
     }
 }
