@@ -42,8 +42,8 @@ class App extends Component {
         <Title/>
         <Text style={styles.welcome}>
           {this.props.beaconData}
-        <Tip number={1} message="Dans un jardin à côté du sénat"/>
         </Text>
+        <Tip number={1} message="Dans un jardin à côté du sénat"/>
       </View>
     );
   }
