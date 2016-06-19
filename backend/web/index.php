@@ -11,9 +11,9 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use TreasureHunt\Api\Command\CreateGameCommand;
-use TreasureHunt\Command\CreateGameCommandHandler;
-use TreasureHunt\Command\SignupUserCommand;
-use TreasureHunt\Command\SignupUserCommandHandler;
+use TreasureHunt\Api\Command\CreateGameCommandHandler;
+use TreasureHunt\Api\Command\SignupUserCommand;
+use TreasureHunt\Api\Command\SignupUserCommandHandler;
 use TreasureHunt\TreasureHunt;
 
 Request::enableHttpMethodParameterOverride();

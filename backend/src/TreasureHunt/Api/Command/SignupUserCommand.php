@@ -1,6 +1,6 @@
 <?php
 
-namespace TreasureHunt\Command;
+namespace TreasureHunt\Api\Command;
 
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;

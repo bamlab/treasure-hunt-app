@@ -3,7 +3,6 @@
 namespace TreasureHunt\Api\Command;
 
 use Doctrine\DBAL\Driver\Connection;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;

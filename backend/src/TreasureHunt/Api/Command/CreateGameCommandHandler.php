@@ -1,11 +1,9 @@
 <?php
 
-namespace TreasureHunt\Command;
+namespace TreasureHunt\Api\Command;
 
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\Response;
-use TreasureHunt\Api\Command\AbstractCommandHandler;
-use TreasureHunt\Api\Command\CreateGameCommand;
 use TreasureHunt\Entity\Game;
 
 class CreateGameCommandHandler extends AbstractCommandHandler
