@@ -10,6 +10,8 @@ use Silex\Provider\ValidatorServiceProvider;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use TreasureHunt\Api\Command\CreateGameCommand;
+use TreasureHunt\Command\CreateGameCommandHandler;
 use TreasureHunt\Command\SignupUserCommand;
 use TreasureHunt\Command\SignupUserCommandHandler;
 use TreasureHunt\TreasureHunt;
@@ -32,6 +34,14 @@ $app->extend('serializer.normalizers', function(array $normalizers) {
 
 $app['app.signup_user_handler'] = function (TreasureHunt $app) {
     return new SignupUserCommandHandler(
+        $app['validator'],
+        $app['db'],
+        $app['serializer']
+    );
+};
+
+$app['app.create_game_handler'] = function (TreasureHunt $app) {
+    return new CreateGameCommandHandler(
         $app['validator'],
         $app['db'],
         $app['serializer']
@@ -71,8 +81,14 @@ $app->get('/games', function (Request $request) {
 
 });
 
-$app->post('/games', function (Request $request) {
+$app->post('/games', function (Request $request) use ($app) {
+    $command = $app['serializer']->deserialize(
+        $request->getContent(),
+        CreateGameCommand::class,
+        'json'
+    );
 
+    return $app['app.create_game_handler']->handle($command);
 });
 
 $app->run(Request::createFromGlobals());
