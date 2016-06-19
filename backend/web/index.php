@@ -7,21 +7,55 @@ $conf = require __DIR__.'/../conf/settings.php';
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SerializerServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
+use TreasureHunt\Command\SignupUserCommand;
+use TreasureHunt\Command\SignupUserCommandHandler;
 use TreasureHunt\TreasureHunt;
 
 Request::enableHttpMethodParameterOverride();
 
-$app = new TreasureHunt();
+$app = new TreasureHunt([
+    'debug' => $conf['debug'],
+]);
+
 $app->register(new SerializerServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new DoctrineServiceProvider(), [
     'db.options' => $conf['database'],
 ]);
-$app['debug'] = true;
+
+$app->extend('serializer.normalizers', function(array $normalizers) {
+    return array_merge($normalizers, [new ObjectNormalizer()]);
+});
+
+$app['app.signup_user_handler'] = function (TreasureHunt $app) {
+    return new SignupUserCommandHandler(
+        $app['validator'],
+        $app['db'],
+        $app['serializer']
+    );
+};
+
+$app->before(function (Request $request) {
+    $contentType = strtolower($request->headers->get('Content-Type'));
+    if ('application/json' !== $contentType) {
+        throw new BadRequestHttpException('HTTP requests must include "Content-Type: application/json" header.');
+    }
+});
 
 $app->post('/users', function (Request $request) use ($app) {
-    
+    $command = $app['serializer']->deserialize(
+        $request->getContent(),
+        SignupUserCommand::class,
+        'json'
+    );
+
+    return $app['app.signup_user_handler']->handle($command);
 });
 
 $app->get('/users/ranking', function (Request $request) use ($app) {

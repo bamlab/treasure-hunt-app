@@ -72,3 +72,44 @@ Open the application in the web browser with the folling HTTP address:
 
 Application should show up!
 
+API Documentation
+-----------------
+
+### User Registration
+
+Request payload:
+
+```http
+POST /users HTTP/1.1
+Host: localhost:8000
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "hhamon"
+}
+```
+
+Response payload:
+
+```http
+POST /users HTTP/1.1
+Host: localhost:8000
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "jsmith"
+}
+```
+
+```http
+HTTP/1.1 201 Created
+Host: localhost:8000
+Connection: close
+Cache-Control: no-cache
+Content-Type: application/json
+Date: Sun, 19 Jun 2016 14:44:13 GMT
+
+"{\u0022uuid\u0022:\u00222df18d52-162f-4cec-b7e6-daf352f5108a\u0022,\u0022username\u0022:\u0022jsmith\u0022,\u0022registered_at\u0022:\u00222016-06-19 16:44:13\u0022}"
+```
